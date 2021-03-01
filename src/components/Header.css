@@ -1,0 +1,10 @@
+.Header {
+  background-color: rgb(255, 89, 47);
+}
+
+@media (min-width: 500px) {
+  #logo {
+    width: 50%;
+    text-align: left;
+  }
+}
