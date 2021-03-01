@@ -1,0 +1,16 @@
+.ProductCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  margin-top: 30px;
+  padding: 10px;
+  text-align: center;
+  transition: background-color 300ms;
+  transition: width 200ms;
+}
+
+.ProductCard:hover {
+  background-color: rgb(204, 150, 255);
+  width: 25%;
+}

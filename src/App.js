@@ -1,6 +1,17 @@
 import "./App.css";
+import Header from "./components/Header.js";
+import './components/Header.css';
+
+import Hero from "./components/Hero.js";
+import "./components/Hero.css";
+
+import ProductsContainer from "./components/ProductsContainer.js";
+import "./components/ProductCard.css"
+import "./components/ProductsContainer.css"
+
 
 const fakeProducts = require("./mocks/data/products.json");
+console.log(fakeProducts);
 
 const data = {
   title: "Edgemony Shop",
@@ -13,7 +24,11 @@ const data = {
 };
 
 function App() {
-  return <div className="App"></div>;
+  return <div className="App">
+    <Header logo={data.logo} />
+    <Hero title={data.title} description={data.description} cover={data.cover}/>
+    <ProductsContainer products={fakeProducts} />
+  </div>;
 }
 
 export default App;
