@@ -1,0 +1,5 @@
+.ProductModal {
+  background-color: red;
+  flex-direction: row;
+  display: inline;
+}

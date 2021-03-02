@@ -6,8 +6,9 @@ import Hero from "./components/Hero.js";
 import "./components/Hero.css";
 
 import ProductsContainer from "./components/ProductsContainer.js";
-import "./components/ProductCard.css"
-import "./components/ProductsContainer.css"
+import "./components/ProductCard.css";
+import "./components/ProductsContainer.css";
+import "./components/ProductModal.css";
 
 
 const fakeProducts = require("./mocks/data/products.json");
