@@ -5,7 +5,7 @@ function ProductCard(props) {
 
     const [isModalOpen, setModalIsOpen] = useState(false);
 
-    return <div key={props.id} className="ProductCard">
+    return <div className="ProductCard">
         <img src={props.image} alt=""/>
         <h3><strong>{props.title}</strong></h3>
         <h3>{props.price}</h3>
