@@ -1,0 +1,25 @@
+.error {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8%;
+}
+
+.error-mess {
+  display: flex;
+  flex-direction: column;
+}
+
+.error .img {
+  text-align: left;
+  width: 30%;
+  margin-left: 13%;
+}
+
+@media (min-width: 500px) {
+  .error {
+    flex-direction: row;
+  }
+}

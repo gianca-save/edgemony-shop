@@ -9,6 +9,13 @@ import ProductsContainer from "./components/ProductsContainer.js";
 import "./components/ProductCard.css";
 import "./components/ProductsContainer.css";
 import "./components/ProductModal.css";
+
+import Loading from "./components/Loading.js";
+import "./components/Loading.css";
+
+import Error from "./components/Error.js";
+import "./components/Error.css"
+
 import { useState, useEffect } from "react";
 
 const data = {
@@ -31,7 +38,7 @@ function App() {
       try {
         console.log('Invio richiesta dati in corso...');
         setLoading(true);
-        const response = await fetch('https://fakestoreapi.com/product');
+        const response = await fetch('https://fakestoreapi.com/products');
         console.log('Dati ricevuti');
 
         const fakeProducts = await response.json();
@@ -56,8 +63,8 @@ function App() {
   return <div className="App">
     <Header logo={data.logo} />
     <Hero title={data.title} description={data.description} cover={data.cover}/>
-    {!isLoading ? <ProductsContainer products={products} /> : <h1>Loading...</h1>  }
-    {isError && <h2>Errore nell'acquisizione dei dati :/</h2> }
+    {!isLoading ? <ProductsContainer products={products} /> : <Loading />  }
+    {isError && <Error /> }
   </div>;
 }
 
