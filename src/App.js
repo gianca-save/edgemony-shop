@@ -29,6 +29,7 @@ function App() {
     <Header logo={data.logo} />
     <Hero title={data.title} description={data.description} cover={data.cover}/>
     <ProductsContainer products={fakeProducts} />
+    {/* <ProductModal products={fakeProducts} /> */}
   </div>;
 }
 
