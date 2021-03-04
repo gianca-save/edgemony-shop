@@ -31,18 +31,20 @@ function App() {
   const [products, setProducts] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
+  const [ retry, setRetry ] = useState(false);
 
   useEffect(() => 
   {
     async function fetchData() {
       try {
+        setRetry(false);
         console.log('Invio richiesta dati in corso...');
         setLoading(true);
         const response = await fetch('https://fakestoreapi.com/products');
-        console.log('Dati ricevuti');
 
         const fakeProducts = await response.json();
 
+        console.log('Dati ricevuti');
         console.log('Dati convertiti in JSON');
         setProducts(fakeProducts);
         console.log('Dati memorizzati in fakeProducts: ',fakeProducts)
@@ -58,13 +60,13 @@ function App() {
 
     fetchData();
 
-  }, []);
+  }, [ retry ]);
 
   return <div className="App">
     <Header logo={data.logo} />
     <Hero title={data.title} description={data.description} cover={data.cover}/>
     {!isLoading ? <ProductsContainer products={products} /> : <Loading />  }
-    {isError && <Error /> }
+    {isError && <Error retry={retry} setRetry={() => setRetry(true)} /> }
   </div>;
 }
 
