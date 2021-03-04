@@ -40,7 +40,7 @@ function App() {
         setRetry(false);
         console.log('Invio richiesta dati in corso...');
         setLoading(true);
-        const response = await fetch('https://fakestoreapi.com/product');
+        const response = await fetch('https://fakestoreapi.com/products');
 
         const fakeProducts = await response.json();
 
