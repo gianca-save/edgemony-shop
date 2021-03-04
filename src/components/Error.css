@@ -18,3 +18,7 @@
 .close {
   background-color: red;
 }
+
+.is-hidden {
+  display: none;
+}
