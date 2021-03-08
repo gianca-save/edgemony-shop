@@ -2,6 +2,8 @@ import "./App.css";
 import Header from "./components/Header.js";
 import './components/Header.css';
 
+import Search from "./components/Search.js";
+
 import Hero from "./components/Hero.js";
 import "./components/Hero.css";
 
@@ -65,6 +67,7 @@ function App() {
   return <div className="App">
     <Header logo={data.logo} />
     <Hero title={data.title} description={data.description} cover={data.cover}/>
+    {/* <Search products={products} filterProducts={(foundProducts) => setModalIsOpen(foundProducts)}  /> */}
     {!isLoading ? <ProductsContainer products={products} /> : <Loading />  }
     {isError && <Error retry={retry} setRetry={() => setRetry(true)} /> }
   </div>;
