@@ -12,7 +12,7 @@ function ProductModal(props) {
         <h3>{props.description}</h3>
         <footer>
             <h2>{props.price}</h2>
-            <button onClick={props.addToCart(...addToCart, props.image)}>Add to Cart</button>
+            <button onClick={props.addToCart(...props.cart, props.image)}>Add to Cart</button>
         </footer>
     </div></div>) : null;
 };
