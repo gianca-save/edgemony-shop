@@ -2,17 +2,17 @@ import propTypes from 'prop-types';
 
 import "./ProductModal.css"
 
-function ProductModal(props) {
-    return props.isOpen ? (<div className='ProductModal'>
-    <div className="overlay" onClick={() => props.closeModal()}></div>
+function ProductModal({isOpen, closeModal, img, title, description, price, addToCart, cart}) {
+    return isOpen ? (<div className='ProductModal'>
+    <div className="overlay" onClick={() => closeModal()}></div>
     <div className="modal-content">
-    <button onClick={() => props.closeModal()}>X</button>
-        <img src={props.img} alt=""/>
-        <h2><strong>{props.title}</strong></h2>
-        <h3>{props.description}</h3>
+    <button onClick={() => closeModal()}>X</button>
+        <img src={img} alt=""/>
+        <h2><strong>{title}</strong></h2>
+        <h3>{description}</h3>
         <footer>
-            <h2>{props.price}</h2>
-            <button onClick={props.addToCart(...props.cart, props.image)}>Add to Cart</button>
+            <h2>{price}</h2>
+            <button onClick={addToCart(...cart, img)}>Add to Cart</button>
         </footer>
     </div></div>) : null;
 };

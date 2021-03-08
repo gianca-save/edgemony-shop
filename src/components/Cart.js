@@ -1,15 +1,8 @@
-function Cart(props) {
+function Cart({products}) {
 
-   /*  function getTotal() {
-        let total = total + product_price;
-        for (product_price in props.products.price) {
-            let total = total + product_price;
-        }
-
-        return total;
-    } */
-
-    return (<div className='Cart'><div className='Cart_List'>{(props.products).map((product) => { return (<div><img src={product.image} alt=""/></div>)})}</div>
+    return (<div className='Cart'>
+                <ul className='Cart_List'>{products.map((product) => { return (
+                    <li><img src={product.image} alt=""/></li>)})}</ul>
     <h3>Totale: </h3></div>);
 }
 
