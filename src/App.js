@@ -34,6 +34,7 @@ function App() {
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
   const [ retry, setRetry ] = useState(false);
+  const [ cart, setCart ] = useState([]);
 
   useEffect(() => 
   {
@@ -65,10 +66,10 @@ function App() {
   }, [ retry ]);
 
   return <div className="App">
-    <Header logo={data.logo} />
+    <Header logo={data.logo} cart = {cart}/>
     <Hero title={data.title} description={data.description} cover={data.cover}/>
     {/* <Search products={products} filterProducts={(foundProducts) => setModalIsOpen(foundProducts)}  /> */}
-    {!isLoading ? <ProductsContainer products={products} /> : <Loading />  }
+    {!isLoading ? <ProductsContainer products={products} addToCart={setCart} /> : <Loading />  }
     {isError && <Error retry={retry} setRetry={() => setRetry(true)} /> }
   </div>;
 }
