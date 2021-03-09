@@ -35,6 +35,8 @@ function App() {
   const [isError, setError] = useState(false);
   const [ retry, setRetry ] = useState(false);
   const [ cart, setCart ] = useState([]);
+
+
    const [productInModal, setProductInModal] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
