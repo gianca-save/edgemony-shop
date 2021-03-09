@@ -1,16 +1,22 @@
-import { useState } from 'react';
-import ProductModal from "./ProductModal.js"
+import { PropTypes } from "prop-types";
 
-function ProductCard(props) {
 
-    const [isModalOpen, setModalIsOpen] = useState(false);
-
-    return <div className="ProductCard">
-        <img src={props.image} alt=""/>
-        <h3><strong>{props.title}</strong></h3>
-        <h3>{props.price}</h3>
-        <button onClick= { () => setModalIsOpen(true)}>View details</button>
-        <ProductModal isOpen={isModalOpen} closeModal={() => setModalIsOpen(false)} img = {props.image} title={props.title} description={props.description} price={props.price}/>
-    </div>
+function ProductCard({ product, openProductModal }) {
+  return (
+    <article className="ProductCard">
+      <img src={product.image} alt={product.title} />
+      <div className="content">
+        <h1>{product.title}</h1>
+        <p>Price: {product.price}€</p>
+      </div>
+      <button onClick={openProductModal}>View details</button>
+    </article>
+  );
 }
+
+ProductCard.propTypes = {
+  product: PropTypes.object.isRequired,
+  openProductModal: PropTypes.func.isRequired,
+};
+
 export default ProductCard;

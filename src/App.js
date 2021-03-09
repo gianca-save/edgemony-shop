@@ -2,8 +2,6 @@ import "./App.css";
 import Header from "./components/Header.js";
 import './components/Header.css';
 
-import Search from "./components/Search.js";
-
 import Hero from "./components/Hero.js";
 import "./components/Hero.css";
 
@@ -11,6 +9,8 @@ import ProductsContainer from "./components/ProductsContainer.js";
 import "./components/ProductCard.css";
 import "./components/ProductsContainer.css";
 import "./components/ProductModal.css";
+
+import ProductModal from "./components/ProductModal.js"
 
 import Loading from "./components/Loading.js";
 import "./components/Loading.css";
@@ -34,6 +34,22 @@ function App() {
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
   const [ retry, setRetry ] = useState(false);
+  const [ cart, setCart ] = useState([]);
+   const [productInModal, setProductInModal] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  function openProductModal(product) {
+    console.log(product);
+    setProductInModal(product);
+    setModalIsOpen(true);
+  }
+
+  function closeModal() {
+    setModalIsOpen(false);
+    setTimeout(() => {
+      setProductInModal(null);
+    }, 500);
+  }
 
   useEffect(() => 
   {
@@ -65,11 +81,28 @@ function App() {
   }, [ retry ]);
 
   return <div className="App">
-    <Header logo={data.logo} />
-    <Hero title={data.title} description={data.description} cover={data.cover}/>
-    {/* <Search products={products} filterProducts={(foundProducts) => setModalIsOpen(foundProducts)}  /> */}
-    {!isLoading ? <ProductsContainer products={products} /> : <Loading />  }
+    <Header 
+    logo={data.logo} cart={cart} products={products}
+    />
+
+    <Hero
+     title={data.title} description={data.description} cover={data.cover}
+
+     />
+
+    {!isLoading ? 
+      <ProductsContainer products={products} openProductModal={openProductModal} />
+    : 
+    <Loading />  }
     {isError && <Error retry={retry} setRetry={() => setRetry(true)} /> }
+
+    <ProductModal
+        isOpen={modalIsOpen}
+        content={productInModal}
+        closeModal={closeModal}
+        cart={cart}
+        setCart={setCart}
+      />
   </div>;
 }
 

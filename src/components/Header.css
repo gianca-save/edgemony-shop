@@ -1,5 +1,16 @@
 .Header {
   background-color: rgb(255, 89, 47);
+  position: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 78px;
+  background-color: black;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  color: white;
 }
 
 @media (min-width: 500px) {

@@ -1,25 +1,44 @@
-import propTypes from 'prop-types';
+import { PropTypes } from "prop-types";
 
 import "./ProductModal.css"
 
-function ProductModal(props) {
-    return props.isOpen ? (<div className='ProductModal'>
-    <div className="overlay" onClick={() => props.closeModal()}></div>
-    <div className="modal-content">
-    <button onClick={() => props.closeModal()}>X</button>
-        <img src={props.img} alt=""/>
-        <h2><strong>{props.title}</strong></h2>
-        <h3>{props.description}</h3>
-        <footer>
-            <h2>{props.price}</h2>
-        </footer>
-    </div></div>) : null;
-};
+function ProductModal({ content, closeModal, isOpen, cart, setCart }) {
+  const isAlreadyInCart = () => cart.find(product => product.id === content.id)
+  const toggleCart = () => {
+    if (isAlreadyInCart()) {
+      const newCart = cart.filter(product => product.id !== content.id)
+      setCart(newCart)
+    } else {
+      setCart([ { id: content.id, quantity: 1 }, ...cart ])
+    }
+  }
+  return (
+    <div className={`ProductModal ${ isOpen ? `isOpen` : '' }`}>
+      <div className="overlay" onClick={closeModal} />
+      <div className="body">
+        <button onClick={closeModal} title="close product modal" className="close">×</button>
+        { !!content ? (
+          <div className="content">
+            <img src={content.image} alt={content.title} />
+            <h2>{content.title}</h2>
+            <p>{content.description}</p>
+            <button type="button" className="addToCart" onClick={toggleCart}>{ isAlreadyInCart() ? 'Remove to Cart -' : 'Add to Cart +'}</button>
+            <br /><br />
+            <hr />
+            <div className="price"><small>Price:</small> {content.price}€</div>
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+}
 
 ProductModal.propTypes = {
-        /* product: propTypes.object.isRequired, */
-        isOpen: propTypes.bool.isRequired,
-        closeModal: propTypes.func.isRequired
-    };
+  product: PropTypes.object,
+  closeModal: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  cart: PropTypes.array.isRequired,
+  setCart: PropTypes.func.isRequired
+};
 
 export default ProductModal;
