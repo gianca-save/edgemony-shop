@@ -36,6 +36,35 @@ function App() {
   const [ retry, setRetry ] = useState(false);
   const [ cart, setCart ] = useState([]);
 
+  const cartTotal = cart.reduce((acc, cartItem) => {
+    const product = products.find((product) => product.id===cartItem.id);
+    return acc + product.price;
+  }, 0);
+
+  const cartSize= cart.length;
+
+  function addToCart(productId) {
+    setCart([...cart, {id:product, quantity:1}]);
+
+    function removeFromCart(productId) {
+      setCart(cart.filter((product) => product-id!==productId));
+    }
+
+    function isProductInCart(productId) {
+      return (productId!=null && cart.find((product) => product.id===productId) != null)
+    }
+  }
+
+  const cartProducts = cart.map((cartItem) => {
+    const product = products.find((product) => product.id === cartItem.id);
+    return {
+      id: product.id,
+      quantity: cartItem.quantity,
+      title: product.title,
+      image: product.image,
+      price: product.price
+    }
+  });
 
    const [productInModal, setProductInModal] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -84,7 +113,7 @@ function App() {
 
   return <div className="App">
     <Header 
-    logo={data.logo} cart={cart} products={products}
+    logo={data.logo} products={products} cartTotal={cartTotal} cartSize={cartSize}
     />
 
     <Hero

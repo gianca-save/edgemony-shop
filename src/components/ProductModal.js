@@ -2,14 +2,13 @@ import { PropTypes } from "prop-types";
 
 import "./ProductModal.css"
 
-function ProductModal({ content, closeModal, isOpen, cart, setCart }) {
-  const isAlreadyInCart = () => cart.find(product => product.id === content.id)
+function ProductModal({ content, closeModal, isOpen, cart, setCart, onClickAdd, onClickRemove }) {
+  const productId=content.id
   const toggleCart = () => {
     if (isAlreadyInCart()) {
-      const newCart = cart.filter(product => product.id !== content.id)
-      setCart(newCart)
+      onClickRemove(productId);
     } else {
-      setCart([ { id: content.id, quantity: 1 }, ...cart ])
+      onClickAdd(productId);
     }
   }
   return (
