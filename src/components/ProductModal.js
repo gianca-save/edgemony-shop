@@ -1,6 +1,6 @@
 import "./ProductModal.css"
 
-function ProductModal({product, setProduct, isModalOpen, openCloseModal}) {
+function ProductModal({product, setProduct, isModalOpen, openCloseModal, cart, total, setCart, setTotal}) {
 
     function exitModal() {
         setProduct(undefined);
@@ -16,8 +16,14 @@ function ProductModal({product, setProduct, isModalOpen, openCloseModal}) {
         <h2><strong>{product.title}</strong></h2>
         <h3>{product.description}</h3>
         <footer>
-            <h2>{product.price}</h2>
+            <h2>{product.price} €</h2>
         </footer>
+        <button onClick= {() => {
+
+            setCart([...cart, product]);
+            setTotal(total + product.price);
+                        
+        }}>Aggiungi al carrello</button>
     </div></div>) : null;
 };
 
