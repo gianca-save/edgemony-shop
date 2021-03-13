@@ -22,6 +22,7 @@ function ProductModal({product, setProduct, isModalOpen, openCloseModal, cart, t
 
             setCart([...cart, product]);
             setTotal(total + product.price);
+            console.log(total)
                         
         }}>Aggiungi al carrello</button>
     </div></div>) : null;

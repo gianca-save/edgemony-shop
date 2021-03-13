@@ -18,6 +18,8 @@ import "./components/Error.css";
 
 import ProductModal from "./components/ProductModal.js";
 
+import CartModal from './components/CartModal.js'
+
 import { useState, useEffect } from "react";
 
 const data = {
@@ -39,7 +41,8 @@ function App() {
 
   const [ cart, setCart ] = useState([]);
   const [ totalPrice, setTotalPrice ] = useState(0);
-  
+
+  const [ isCartModalOpen, setIsCartModalOpen ] = useState(false);
 
   useEffect(() => 
   {
@@ -71,11 +74,12 @@ function App() {
   }, [ retry ]);
 
   return <div className="App">
-    <Header logo={data.logo} total={totalPrice} cart={cart} />
+    <Header logo={data.logo} total={totalPrice} cart={cart} setIsCartModalOpen={setIsCartModalOpen} />
     <Hero title={data.title} description={data.description} cover={data.cover}/>
     {!isLoading ? <ProductsContainer products={products} setProductModal={setProductModal} openCloseModal={setIsProductModalOpen} /> : <Loading />  }
     {isError && <Error retry={retry} setRetry={() => setRetry(true)} /> }
     <ProductModal product={productModal} setProduct={setProductModal} isModalOpen={isProductModalOpen} openCloseModal={setIsProductModalOpen} cart={cart} setCart={setCart} total={totalPrice} setTotal={setTotalPrice} />
+    <CartModal isCartModalOpen={isCartModalOpen} setIsCartModalOpen={setIsCartModalOpen} cart={cart} setCart={setCart} total={totalPrice} setTotal={setTotalPrice} />
   </div>;
 }
 
