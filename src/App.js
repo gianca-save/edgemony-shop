@@ -2,8 +2,6 @@ import "./App.css";
 import Header from "./components/Header.js";
 import './components/Header.css';
 
-import Search from "./components/Search.js";
-
 import Hero from "./components/Hero.js";
 import "./components/Hero.css";
 
@@ -16,7 +14,11 @@ import Loading from "./components/Loading.js";
 import "./components/Loading.css";
 
 import Error from "./components/Error.js";
-import "./components/Error.css"
+import "./components/Error.css";
+
+import ProductModal from "./components/ProductModal.js";
+
+import CartModal from './components/CartModal.js'
 
 import { useState, useEffect } from "react";
 
@@ -34,6 +36,13 @@ function App() {
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
   const [ retry, setRetry ] = useState(false);
+  const [ productModal, setProductModal ] = useState(undefined);
+  const [ isProductModalOpen, setIsProductModalOpen ] = useState(false);
+
+  const [ cart, setCart ] = useState([]);
+  const [ totalPrice, setTotalPrice ] = useState(0);
+
+  const [ isCartModalOpen, setIsCartModalOpen ] = useState(false);
 
   useEffect(() => 
   {
@@ -65,11 +74,12 @@ function App() {
   }, [ retry ]);
 
   return <div className="App">
-    <Header logo={data.logo} />
+    <Header logo={data.logo} total={totalPrice} cart={cart} setIsCartModalOpen={setIsCartModalOpen} />
     <Hero title={data.title} description={data.description} cover={data.cover}/>
-    {/* <Search products={products} filterProducts={(foundProducts) => setModalIsOpen(foundProducts)}  /> */}
-    {!isLoading ? <ProductsContainer products={products} /> : <Loading />  }
+    {!isLoading ? <ProductsContainer products={products} setProductModal={setProductModal} openCloseModal={setIsProductModalOpen} /> : <Loading />  }
     {isError && <Error retry={retry} setRetry={() => setRetry(true)} /> }
+    <ProductModal product={productModal} setProduct={setProductModal} isModalOpen={isProductModalOpen} openCloseModal={setIsProductModalOpen} cart={cart} setCart={setCart} total={totalPrice} setTotal={setTotalPrice} />
+    <CartModal isCartModalOpen={isCartModalOpen} setIsCartModalOpen={setIsCartModalOpen} cart={cart} setCart={setCart} total={totalPrice} setTotal={setTotalPrice} />
   </div>;
 }
 

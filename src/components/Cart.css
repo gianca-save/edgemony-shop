@@ -1,0 +1,14 @@
+.Cart {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  background-color: black;
+  align-items: center;
+  justify-items: right;
+}
+
+.Cart p,
+.Cart h3,
+.Cart button {
+  margin-left: 10px;
+}

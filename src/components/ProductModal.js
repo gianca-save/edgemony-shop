@@ -1,25 +1,31 @@
-import propTypes from 'prop-types';
-
 import "./ProductModal.css"
 
-function ProductModal(props) {
-    return props.isOpen ? (<div className='ProductModal'>
-    <div className="overlay" onClick={() => props.closeModal()}></div>
+function ProductModal({product, setProduct, isModalOpen, openCloseModal, cart, total, setCart, setTotal}) {
+
+    function exitModal() {
+        setProduct(undefined);
+        openCloseModal(false);
+    }
+
+    return isModalOpen ? (<div className='ProductModal'>
+    <div className="overlay" onClick={() => exitModal()}>
+        </div>
     <div className="modal-content">
-    <button onClick={() => props.closeModal()}>X</button>
-        <img src={props.img} alt=""/>
-        <h2><strong>{props.title}</strong></h2>
-        <h3>{props.description}</h3>
+    <button onClick={() => exitModal()}>X</button>
+        <img src={product.image} alt=""/>
+        <h2><strong>{product.title}</strong></h2>
+        <h3>{product.description}</h3>
         <footer>
-            <h2>{props.price}</h2>
+            <h2>{product.price} €</h2>
         </footer>
+        <button onClick= {() => {
+
+            setCart([...cart, product]);
+            setTotal(total + product.price);
+            console.log(total)
+                        
+        }}>Aggiungi al carrello</button>
     </div></div>) : null;
 };
-
-ProductModal.propTypes = {
-        /* product: propTypes.object.isRequired, */
-        isOpen: propTypes.bool.isRequired,
-        closeModal: propTypes.func.isRequired
-    };
 
 export default ProductModal;
