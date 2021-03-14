@@ -19,6 +19,7 @@ function CartModal({isCartModalOpen, setIsCartModalOpen, cart, total, setCart, s
     return (
         <div className={ isCartModalOpen ? 'CartModal' : 'is-hidden'}>
             <div className="overlay" onClick={() => setIsCartModalOpen(false)}></div>
+            <div className='CartModalContainer'>
             <header className='CartModalHeader'>
                 <button onClick={() => setIsCartModalOpen(false)}>X</button>
                 <h1>Carrello</h1>
@@ -32,8 +33,9 @@ function CartModal({isCartModalOpen, setIsCartModalOpen, cart, total, setCart, s
                 <button onClick= {() => deleteProduct(product)}>Rimuovi</button>
             </div>                
             )})}
+            <footer>Totale: {total} €</footer>
         </div>
-        <footer>Totale: {total} €</footer>
+        </div>
         </div> )
         };
 
