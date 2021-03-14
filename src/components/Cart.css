@@ -8,6 +8,7 @@
 }
 
 .Cart p,
-.Cart h3 {
+.Cart h3,
+.Cart button {
   margin-left: 10px;
 }
