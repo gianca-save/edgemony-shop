@@ -1,9 +1,27 @@
 .ProductModal {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   top: 0;
-  left: 0;
-  height: 100vh;
+  right: 0;
   width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  justify-content: center;
+}
+
+.ProductModal > button {
+  top: 0;
+  right: 0;
+  z-index: 10;
+  width: 5%;
+}
+
+.ProductDetail {
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  width: 80%;
 
   display: flex;
   flex-direction: column;
