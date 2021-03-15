@@ -1,17 +1,9 @@
-import "./ProductModal.css"
+import "./ProductModal.css";
 
-function ProductModal({product, setProduct, isModalOpen, openCloseModal, cart, total, setCart, setTotal}) {
+function ProductDetail({product, setProduct, openCloseModal, isModalOpen, cart, total, setCart, setTotal}) {
 
-    function exitModal() {
-        setProduct(undefined);
-        openCloseModal(false);
-    }
-
-    return isModalOpen ? (<div className='ProductModal'>
-    <div className="overlay" onClick={() => exitModal()}>
-        </div>
+    return isModalOpen ? (<div className='ProductDetail'>
     <div className="modal-content">
-    <button onClick={() => exitModal()}>X</button>
         <img src={product.image} alt=""/>
         <h2><strong>{product.title}</strong></h2>
         <h3>{product.description}</h3>
@@ -28,4 +20,4 @@ function ProductModal({product, setProduct, isModalOpen, openCloseModal, cart, t
     </div></div>) : null;
 };
 
-export default ProductModal;
+export default ProductDetail;
