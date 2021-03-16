@@ -1,6 +1,7 @@
 import "./App.css";
 
-import Home from './Pages/Home.js'
+import Home from './Pages/Home.js';
+import Product from '.Pages/Product.js'
 
 import {Router, Route, Switch} from 'react-router-dom';
 import Header from "./components/Header.js";
@@ -25,6 +26,7 @@ const data = {
 function App() {
 
   const [ cart, setCart ] = useState([]);
+
   const [ totalPrice, setTotalPrice ] = useState(0);
 
   const [ isCartModalOpen, setIsCartModalOpen ] = useState(false);
@@ -41,7 +43,8 @@ function App() {
     
     <Switch>
       <Route path='/'>
-        <Home /> 
+        <Home />
+        <Product />
       </Route>
     </Switch>
     

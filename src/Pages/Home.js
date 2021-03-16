@@ -63,7 +63,7 @@ function Home() {
         {isError && <Error retry={retry} setRetry={() => setRetry(true)} /> }
         
         <Modal isOpen={isProductModalOpen} onClose={() => setIsProductModalOpen(false)}>
-          <ProductDetail product={productDetail} setProduct={setProductDetail} isModalOpen={isProductModalOpen} openCloseModal={setIsProductModalOpen} />
+          <ProductDetail product={productDetail} setProduct={setProductDetail} isModalOpen={isProductModalOpen} openCloseModal={setIsProductModalOpen} cart={cart} setCart={setCart} total={totalPrice} setTotal={setTotalPrice} />
         </Modal>
 
         </div>
