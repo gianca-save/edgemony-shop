@@ -1,7 +1,8 @@
 import "./App.css";
 
 import Home from './Pages/Home.js';
-/* import Product from '.Pages/Product.js' */
+import Product from './Pages/Product.js'
+import Page404 from './Pages/Page404.js'
 
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Header from "./components/Header.js";
@@ -42,14 +43,18 @@ function App() {
       <CartModal isCartModalOpen={isCartModalOpen} setIsCartModalOpen={setIsCartModalOpen} cart={cart} setCart={setCart} total={totalPrice} setTotal={setTotalPrice} />
     
     <Switch>
-      <Route path='/'>
+      <Route exact path='/'>
         <Home cart={cart} setCart={setCart} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>
        
       </Route>
 
-      {/* <Route path='product/'>
+      {<Route path='product/:productId'>
         <Product />
-      </Route> */}
+      </Route>}
+
+      <Route path='*'>
+        <Page404 />
+      </Route>
 
     </Switch>
     
