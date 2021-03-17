@@ -48,9 +48,9 @@ function App() {
        
       </Route>
 
-      {<Route path='product/:productId'>
-        <Product />
-      </Route>}
+      <Route path='/product/:productId'>
+        <Product cart={cart} setCart={setCart} totalPrice={totalPrice} setTotalPrice={setTotalPrice} />
+      </Route>
 
       <Route path='*'>
         <Page404 />
