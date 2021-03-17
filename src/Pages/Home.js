@@ -19,7 +19,7 @@ import Modal from "../components/Modal.js"
 
 import "../components/ProductModal.css";
 
-function Home() {
+function Home({cart, setCart, totalPrice, setTotalPrice}) {
 
   const [products, setProducts] = useState([]);
   const [isLoading, setLoading] = useState(false);

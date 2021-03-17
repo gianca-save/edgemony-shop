@@ -1,9 +1,9 @@
 import "./App.css";
 
 import Home from './Pages/Home.js';
-import Product from '.Pages/Product.js'
+/* import Product from '.Pages/Product.js' */
 
-import {Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Header from "./components/Header.js";
 import './components/Header.css';
 
@@ -12,7 +12,7 @@ import "./components/Hero.css";
 
 import CartModal from './components/CartModal.js';
 
-import useState from "react";
+import {useState} from "react";
 
 const data = {
   title: "Edgemony Shop",
@@ -43,9 +43,14 @@ function App() {
     
     <Switch>
       <Route path='/'>
-        <Home />
-        <Product />
+        <Home cart={cart} setCart={setCart} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>
+       
       </Route>
+
+      {/* <Route path='product/'>
+        <Product />
+      </Route> */}
+
     </Switch>
     
     </div> 
