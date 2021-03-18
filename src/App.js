@@ -1,8 +1,8 @@
 import "./App.css";
 
 import Home from './Pages/Home.js';
-import Product from './Pages/Product.js'
-import Page404 from './Pages/Page404.js'
+import Product from './Pages/Product.js';
+import Page404 from './Pages/Page404.js';
 
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Header from "./components/Header.js";

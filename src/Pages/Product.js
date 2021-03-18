@@ -6,49 +6,44 @@ import Error from '../components/Error.js'
 
 function Product({cart, setCart, totalPrice, setTotalPrice}) {
 
-    const { productId } = useParams();
+  let { productId } = useParams();
 
-  const [isLoading, setLoading] = useState(false);
+  const [isLoadingProduct, setLoadingProduct] = useState(true);
   const [isError, setError] = useState(false);
   const [ retry, setRetry ] = useState(false);
-  const [ productDetail, setProductDetail ] = useState(undefined);
-
+  const [ productDetail, setProductDetail ] = useState();
 
     useEffect(() => 
   {
     async function fetchProduct() {
       try {
-        setRetry(false);
+        setLoadingProduct(true);
         console.log('Invio richiesta dati relativi al prodotto selezionato in corso...');
-        setLoading(true);
-        const response = await fetch('https://fakestoreapi.com/products');
+        const response = await fetch(`https://fakestoreapi.com/products/${productId}`);
 
-        const fakeProducts = await response.json();
+        const product = await response.json();
 
         console.log('Dati ricevuti');
         console.log('Dati convertiti in JSON');
 
-        const product = fakeProducts.find(product => product.id === productId);
-        console.log(product)
-
         setProductDetail(product);
-        console.log('Dati del prodotto memorizzati in productDetail: ', productDetail)
-        setLoading(false);
+        console.log('Dati del prodotto memorizzati in productDetail: ', product)
+        setLoadingProduct(false);
       }
 
       catch (err) {
         console.log('Errore durante l\'acquisizione dei dati relativi ai prodotti: ', err.message);
-        setLoading(false);
+        setLoadingProduct(false);
         setError(true);
       }
     }
 
     fetchProduct();
 
-  }, [ retry ]);
+  }, [productId, retry ]);
 
     return <div>
-        {!isLoading ? <ProductDetail product={productDetail} cart={cart} setCart={setCart} total={totalPrice} setTotal={setTotalPrice} /> : <Loading />  }
+        {isLoadingProduct ? <Loading /> : <ProductDetail product={productDetail} cart={cart} setCart={setCart} total={totalPrice} setTotal={setTotalPrice} />  }
         {isError && <Error retry={retry} setRetry={() => setRetry(true)} /> }
     </div>
 }
