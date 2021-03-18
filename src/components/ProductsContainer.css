@@ -1,9 +1,24 @@
 .ProductsContainer {
+  padding: 0 20px;
+}
+
+.ProductsContainer__filters {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-items: stretch;
   flex-wrap: wrap;
-  overflow-x: auto;
-  background-color: rgb(205, 231, 255);
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+.ProductsContainer__filters .Search {
+  margin-bottom: 20px;
+}
+
+.ProductsContainer__products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px 10px;
+}
+
+.ProductsContainer .Product {
+  margin: 10px;
 }

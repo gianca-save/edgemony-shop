@@ -43,15 +43,15 @@ function ProductsContainer({products, setProductDetail, openCloseModal, categori
   );
 
 
-   return (<div>
-      <div className="ProductList__filters">
+   return (<div className='ProductsContainer'>
+      <div className="ProductsContainer__filter">
         <Search term={searchTerm} onSearch={setSearchTerm} />
         <CategoriesFilter
           categories={categories}
           selectedCategories={selectedCategories}
           onSelectCategory={setSelectedCategories}
         /> </div>
-        <div className='ProductsContainer'>{(products).map((product) => { return (<ProductCard key= {product.id} product={product} setProductDetail={setProductDetail} openCloseModal={openCloseModal} />)})}</div></div>);
+        <div className='ProductsContainer__products'>{(products).map((product) => { return (<ProductCard key= {product.id} product={product} setProductDetail={setProductDetail} openCloseModal={openCloseModal} />)})}</div></div>);
 }
 
 export default ProductsContainer;
