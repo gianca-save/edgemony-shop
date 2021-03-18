@@ -36,7 +36,7 @@ function Home({cart, setCart, totalPrice, setTotalPrice}) {
   {
     async function fetchData() {
       try {
-        if (cache === undefined) {
+        if (cache !== undefined) {
           return;
         }
 
