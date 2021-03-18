@@ -19,9 +19,12 @@ import Modal from "../components/Modal.js"
 
 import "../components/ProductModal.css";
 
+let cache;
+
 function Home({cart, setCart, totalPrice, setTotalPrice}) {
 
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(cache ? cache.products : []);
+  const [categories, setCategories] = useState(cache ? cache.categories : []);
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
   const [ retry, setRetry ] = useState(false);
@@ -33,17 +36,28 @@ function Home({cart, setCart, totalPrice, setTotalPrice}) {
   {
     async function fetchData() {
       try {
+        if (cache === undefined) {
+          return;
+        }
+
         setRetry(false);
         console.log('Invio richiesta dati in corso...');
         setLoading(true);
-        const response = await fetch('https://fakestoreapi.com/products');
+        const responseProducts = await fetch('https://fakestoreapi.com/products');
+        const responseCategories = await fetch('https://fakestoreapi.com/products/categories')
 
-        const fakeProducts = await response.json();
+        const fakeProducts = await responseProducts.json();
+        const fakeCategories = await responseCategories.json();
 
         console.log('Dati ricevuti');
         console.log('Dati convertiti in JSON');
         setProducts(fakeProducts);
-        console.log('Dati memorizzati in fakeProducts: ',fakeProducts)
+        setCategories(fakeCategories);
+        console.log('Dati memorizzati in fakeProducts: ',fakeProducts);
+        console.log('Categorie: ', fakeCategories);
+
+        cache = { products, categories };
+
         setLoading(false);
       }
 
@@ -59,7 +73,7 @@ function Home({cart, setCart, totalPrice, setTotalPrice}) {
   }, [ retry ]);
 
     return <div>
-         {!isLoading ? <ProductsContainer products={products} setProductDetail={setProductDetail} openCloseModal={setIsProductModalOpen} /> : <Loading />  }
+         {!isLoading ? <ProductsContainer products={products} setProductDetail={setProductDetail} openCloseModal={setIsProductModalOpen} categories={categories} /> : <Loading />  }
         {isError && <Error retry={retry} setRetry={() => setRetry(true)} /> }
         
         <Modal isOpen={isProductModalOpen} onClose={() => setIsProductModalOpen(false)}>
