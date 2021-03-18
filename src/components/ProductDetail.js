@@ -1,8 +1,8 @@
 import "./ProductModal.css";
 
-function ProductDetail({product, setProduct, openCloseModal, isModalOpen, cart, total, setCart, setTotal}) {
+function ProductDetail({product, cart, total, setCart, setTotal}) {
 
-    return isModalOpen ? (<div className='ProductDetail'>
+    return (<div className='ProductDetail'>
     <div className="modal-content">
         <img src={product.image} alt=""/>
         <h2><strong>{product.title}</strong></h2>
@@ -17,7 +17,7 @@ function ProductDetail({product, setProduct, openCloseModal, isModalOpen, cart, 
             console.log(total)
                         
         }}>Aggiungi al carrello</button>
-    </div></div>) : null;
+    </div></div>);
 };
 
 export default ProductDetail;
